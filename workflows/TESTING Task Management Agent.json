@@ -1,0 +1,1075 @@
+{
+  "active": false,
+  "connections": {
+    "Get user": {
+      "main": [
+        [
+          {
+            "node": "Get Test Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set get calls timestamp": {
+      "main": [
+        [
+          {
+            "node": "Get user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lookup ClickUp Lists": {
+      "main": [
+        [
+          {
+            "node": "Format customer object",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get call transcript": {
+      "main": [
+        [
+          {
+            "node": "Analyze Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get List Tasks": {
+      "main": [
+        [
+          {
+            "node": "Get call transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Tasks": {
+      "main": [
+        [
+          {
+            "node": "Format tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Task Status": {
+      "main": [
+        [
+          {
+            "node": "Add task comments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter out other calls": {
+      "main": [
+        [
+          {
+            "node": "If My Calls Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format call data": {
+      "main": [
+        [
+          {
+            "node": "Split Out2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Get List Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format customer object": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format tasks": {
+      "main": [
+        [
+          {
+            "node": "Split All Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If New Task": {
+      "main": [
+        [
+          {
+            "node": "If assigned to me",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Filter Out Complete Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split All Tasks": {
+      "main": [
+        [
+          {
+            "node": "If New Task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If any calls exist": {
+      "main": [
+        [
+          {
+            "node": "Get only calls data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If My Calls Exist": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get only calls data": {
+      "main": [
+        [
+          {
+            "node": "Filter out other calls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Format call data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Out Complete Tasks": {
+      "main": [
+        [
+          {
+            "node": "Update Task Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out2": {
+      "main": [
+        [
+          {
+            "node": "Lookup ClickUp Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add new task comment": {
+      "main": [
+        []
+      ]
+    },
+    "Add task comments": {
+      "main": [
+        []
+      ]
+    },
+    "If assigned to me": {
+      "main": [
+        [
+          {
+            "node": "Create my new tasks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create others new tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create my new tasks": {
+      "main": [
+        [
+          {
+            "node": "Add new task comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create others new tasks": {
+      "main": [
+        [
+          {
+            "node": "Add new task comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set get calls timestamp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Test Call": {
+      "main": [
+        [
+          {
+            "node": "If any calls exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-17T22:03:31.988Z",
+  "id": "1w25JjOofwYeXCXo",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "TESTING Task Management Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "user",
+        "user": {
+          "__rl": true,
+          "value": "1129716018455402806",
+          "mode": "list",
+          "cachedResultName": "Michael McCall (mmccall@bigpanda.io)"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.gong",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        260
+      ],
+      "id": "06d9a8d7-7564-4119-8223-5e58089eb160",
+      "name": "Get user",
+      "credentials": {
+        "gongApi": {
+          "id": "217eZdugKIyLqdFd",
+          "name": "Gong account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse and subtract 30 minutes\nconst minus30 = DateTime.fromISO($input.first().json.timestamp).minus({ minutes: 30 }).toISO();\n\n// Parse and subtract 300 minutes for testing\nconst minus7200 = DateTime.fromISO($input.first().json.timestamp).minus({ minutes: 7200 }).toISO();\n\n// Attach back onto the JSON\n$input.first().json.timestampMinus30 = minus30;\n$input.first().json.timestampMinus7200 = minus7200;\nreturn $input.first();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        260
+      ],
+      "id": "5f503d1e-c5dc-47f6-9d33-08474e1e3a18",
+      "name": "Set get calls timestamp"
+    },
+    {
+      "parameters": {
+        "url": "https://api.clickup.com/api/v2/space/90170841945/list?archived=false",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        500
+      ],
+      "id": "07c5a01e-0e3e-4416-a9c7-a2c799ceb882",
+      "name": "Lookup ClickUp Lists",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clickup.com/api/v2/list/{{ $json.task_list_id }}/task",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1340,
+        780
+      ],
+      "id": "faf12bdd-ca2b-4f92-adc6-bc58d76f670e",
+      "name": "Get List Tasks",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gong.io/v2/calls/transcript",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gongApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"callIds\": [\"{{ $('Split Out').item.json.id }}\"]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        780
+      ],
+      "id": "7c54c33a-104d-440e-a935-9996a5ff9b9a",
+      "name": "Get call transcript",
+      "credentials": {
+        "gongApi": {
+          "id": "217eZdugKIyLqdFd",
+          "name": "Gong account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Please scan the entire json CALL TRANSCRIPT, not just the preview or snippet, and follow this chain of actions:\n1. Determine any action items that were discussed on the call and capture corresponding ACTION ITEM DETAILS.\n2. Compare the action items found on the CALL TRANSCRIPT to the EXISTING TASKS provided to be able to determine the \"Task Status\".\n3. Review the CALL DATA to add the corresponding call title to each task object\n3. Use the CALL DATA and the corresponding \"speaker_map\" to find the Assignee's name and include that instead of the speakerId in the \"assignee\" field.\n4. Add Task Category based on TASK CATEGORIES. If it doesn't match one that's included in TASK CATEGORIES, then infer one and append it to the end of \"Other - \".\n5. Please format it in JSON like the \"OUTPUT JSON\" section. You MUST respond with NOTHING except the JSON.\n\nCALL TRANSCRIPT\n{{ $json.callTranscripts[0].transcript.toJsonString() }}\n\nACTION ITEM DETAILS\n1. Call Title (what was the title of the call from which the action item came from)\n2. Task Status (infer if it's \"New\", \"In Progress\", \"On Hold\", or \"Complete\". Review the EXISTING TASKS to see if one already exists)\n3. Task Assignee (use the speakers name here)\n4. Call timestamp reference - show the hour and minute when it happened (when in the call was this action item discussed)\n5. Task List ID (what is the corresponding customers task_list_id for this action item)\n6. Task Category (what type of task is this)\n7. Task Category Index (Index of category starting with 0, based on the order provided under TASK CATEGORIES)\n\nIF the task is a found to be a \"New\" task, please include\n8. Task Title (keep it concise)\n9. Task Description\n\nIF a task is found to be an \"In Progress\" task, please include:\n8. Task Title (Use the existing one from the task in Clickup)\n9. Task Description (Generate an update for the task)\n10. Existing Clickup task ID\n\nCALL DATA\n{{ $('Format customer object').item.json.message.content.calls.toJsonString() }}\n\nEXISTING TASKS\n{{ $('Get List Tasks').item.json.tasks.toJsonString() }}\n\nTASK CATEGORIES\n\"Scheduling\" - need to schedule a call or meeting\n\"Support Update\" - Look for an update from the support team on an outstanding bug, feature request, \"RFE\", or suggestion\n\"Follow Up with Information\" - need to check with someone not on the call and relay information back to someone on the call\n\"Tool Configuration Update\" - Make updates to BigPanda or other tools to improve their configuration or functionality\n\"Document/Deliverable\" - Preparation, completion, or an update to a document, slide deck, value assessment, ILA, etc\n\"Other - xxx\"\n\nOUTPUT JSON\n{\n  \"tasks\": [\n    {\n       \"call_title\": \"...\",\n       \"task_title\": \"...\",\n       \"description\": \"...\",\n       \"timestamp\": \"...\"\n       \"assignee\": speakerId,\n       \"task_status\": \"New\",\n       \"task_list_id\": \"xxxx\",\n       \"task_category\": \"xxxx\",\n       \"task_category_index\": \"x\"\n    },\n    {\n       \"call_title\": \"...\",\n       \"task_title\": \"...\",\n       \"description\": \"...\",\n       \"timestamp\": \"...\"\n       \"assignee\": speakerId,\n       \"task_status\": \"In Progress\",\n       \"clickup_id\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"task_category\": \"xxxx\",\n       \"task_category_index\": \"x\"\n    },\n    {\n      ...\n    }\n  ]\n}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1720,
+        780
+      ],
+      "id": "bbef706c-a70c-428e-9651-f9e5fcb2ea21",
+      "name": "Analyze Tasks",
+      "credentials": {
+        "openAiApi": {
+          "id": "QI8VhWIOBcvTDoFc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $json.id }}/comment",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "comment_text",
+              "value": "=AI AGENT UPDATE: {{ $json.description }}\n\nCall Title: {{ $('If New Task').item.json.call_title }}\n\nCall Timestamp: {{ $('If New Task').item.json.timestamp }}\n\nTask Category: {{ $('If New Task').item.json.task_category }}"
+            },
+            {
+              "name": "notify_all",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2220,
+        1340
+      ],
+      "id": "f76da486-2d2c-4612-b98e-819e233627f3",
+      "name": "Add task comments",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $json.clickup_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "status",
+              "value": "={{ $json.task_status }}"
+            },
+            {
+              "name": "custom_fields",
+              "value": "=[\n  {\n    \"value\": \"{{ $json.task_category }}\",\n    \"id\": \"d528c55b-b687-4a89-aec2-ffad5fb920bb\"\n  }\n]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2020,
+        1340
+      ],
+      "id": "39a43718-0995-4bf0-91cf-5cadd6ad8ed7",
+      "name": "Update Task Status",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $json.id }}/comment",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "comment_text",
+              "value": "=AI AGENT UPDATE: Added new task\n\nCall Title: {{ $('If New Task').item.json.call_title }}\n\nCall Timestamp: {{ $('If New Task').item.json.timestamp }}\n\nTask Category: {{ $('If New Task').item.json.task_category }}"
+            },
+            {
+              "name": "notify_all",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2220,
+        1100
+      ],
+      "id": "7104f105-c319-4d4a-8a75-da8f84e9cba4",
+      "name": "Add new task comment",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement Weekly\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        260
+      ],
+      "id": "cd933dbb-7113-4511-85d0-d26d646a264b",
+      "name": "Filter out other calls"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const inputArray = $input.item.json;  // your original array\nconst outputArray = [];\n\n\n// slim down metadata\nconst slimMeta = {\n  id:    inputArray.metaData && inputArray.metaData.id,\n  title: inputArray.metaData && inputArray.metaData.title\n};\n\n  // slim down parties\n  const slimParties = [];\n  const parties = Array.isArray(inputArray.parties) ? inputArray.parties : [];\n  for (let k = 0; k < parties.length; k++) {\n    const p = parties[k];\n    slimParties.push({\n      speaker_id:    p.speakerId,\n      speaker_email: p.emailAddress,\n      speaker_name:  p.name\n    });\n  }\n\n  // assemble slimmed call\n  outputArray.push({\n    metaData: slimMeta,\n    parties:  slimParties\n  });\n\n\nlet slimCalls = { \"calls\": outputArray};\nreturn slimCalls;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        500
+      ],
+      "id": "2381554f-f75a-4e74-a2a6-b127e4443862",
+      "name": "Format call data"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "message.content.calls",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        500
+      ],
+      "id": "1a1a4cf7-f830-4433-84cb-330f8e21b721",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Please scan the entire json payload below under \"PAYLOAD\", not just the preview or snippet, for the parties array of each call object and return the \"CALL DETAILS\". Review the TASK LISTS data to get the corresponding task_list_id based on the customer_name and the list name.\n\nPlease format it in JSON like the \"OUTPUT JSON\" section and respond with NOTHING except the JSON.\n\nCALL DETAILS\n1. call ID\n2. title \n3. customer_name (infer this from non-bigpanda.io emails and call titles. Note: Upbound and Rent-A-Center are the same customer.)\n4. task_list_id\n5. speaker_map (an array mapping all speakerIds to their names from the \"parties\" array)\n\nTASK LISTS\n{{ $json.lists.toJsonString() }}\n\nOUTPUT JSON\n{\n  \"calls\": [\n    {\n       \"id\": \"xxxx\",\n       \"title\": \"...\",\n       \"customer_name\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"speaker_map\": [\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         },\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         }\n       ]\n    },\n    {\n      ...\n     }\n  ]\n}\n\nPAYLOAD\n{{ $('Format call data').item.json.calls.toJsonString() }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        980,
+        500
+      ],
+      "id": "8d7aeca7-3329-4a5f-8fe4-e7dea4303538",
+      "name": "Format customer object",
+      "credentials": {
+        "openAiApi": {
+          "id": "QI8VhWIOBcvTDoFc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "485a55a2-6510-436f-9d99-3e74a3b00509",
+              "name": "tasks",
+              "value": "={{ $json.message.content.tasks }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2100,
+        780
+      ],
+      "id": "b0ee0739-df63-4474-b5f8-e3b9c816c454",
+      "name": "Format tasks"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2133f8c2-e3c9-4f56-a4de-9cef6659a256",
+              "leftValue": "={{ $json.task_status }}",
+              "rightValue": "New",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1340,
+        1100
+      ],
+      "id": "e5316862-944f-4e1c-82a3-ea0be5363062",
+      "name": "If New Task"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "tasks",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        780
+      ],
+      "id": "70ad5ac5-2a8c-4b59-8828-ee49c8676cb5",
+      "name": "Split All Tasks"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        780
+      ],
+      "id": "4d3826d4-b377-4128-8eba-1c61e2a9aa2f",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "87cdd456-3f20-43e6-b4c0-f824fd5736da",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bd20c71f-7171-4630-846c-0378f5027534",
+              "leftValue": "={{ $json.error.description }}",
+              "rightValue": "No calls found corresponding to the provided filters",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -40,
+        260
+      ],
+      "id": "d80ea77c-566a-40be-9596-903faf780180",
+      "name": "If any calls exist"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.calls.length }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "id": "cf3cabb8-8daa-4516-be29-8be7e4a3bad7",
+      "name": "If My Calls Exist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1ef89f65-5b02-4921-b028-560430e483e2",
+              "name": "calls",
+              "value": "={{ $json.calls}}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        260
+      ],
+      "id": "378930ea-0cfc-428e-8e6a-d29a46b193a5",
+      "name": "Get only calls data"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "calls",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        500
+      ],
+      "id": "3f2545b7-948c-435f-a491-f55b2b1d0ceb",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2519b6c1-e645-4239-950e-9bebd3a72eb4",
+              "leftValue": "={{ $json.task_status }}",
+              "rightValue": "Complete",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1780,
+        1340
+      ],
+      "id": "25be3707-374d-46b0-b07c-d3d17c7a8666",
+      "name": "Filter Out Complete Tasks"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "calls",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        500
+      ],
+      "id": "9449892e-a1a3-4522-b6c4-b1d21dff1e52",
+      "name": "Split Out2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "messages": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2400,
+        1200
+      ],
+      "id": "1cd952f9-2d83-41c4-b2f8-2702ceb17c1c",
+      "name": "Plan next steps for task",
+      "credentials": {
+        "openAiApi": {
+          "id": "QI8VhWIOBcvTDoFc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e31bca9c-1ca5-49e9-8638-2bf96103b79e",
+              "leftValue": "={{ $json.assignee }}",
+              "rightValue": "Michael McCall",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        1080
+      ],
+      "id": "e079abaa-3164-4260-abb2-d7180cdbb8fe",
+      "name": "If assigned to me"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/list/{{ $json.task_list_id }}/task",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"name\": \"[TEST] {{ $json.task_title }}\",\n  \"description\": \"{{ $json.description }}\\n\\nAssignee: {{ $json.assignee }}\",\n  \"assignees\": [57194708],\n  \"custom_fields\": [\n    {\n        \"value\": \"{{ $json.task_category_index }}\",\n        \"id\": \"d528c55b-b687-4a89-aec2-ffad5fb920bb\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2020,
+        1020
+      ],
+      "id": "349c3e6b-0cab-4218-bd27-adecd45d1b63",
+      "name": "Create my new tasks",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/list/{{ $json.task_list_id }}/task",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "clickUpApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.task_title }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.description }}\n\nAssignee: {{ $json.assignee }}"
+            },
+            {
+              "name": "custom_fields",
+              "value": "=[\n  {\n    \"value\": \"Other\",\n    \"id\": \"d528c55b-b687-4a89-aec2-ffad5fb920bb\"\n  }\n]"
+            },
+            {
+              "name": "assignees",
+              "value": "[57194708]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2020,
+        1180
+      ],
+      "id": "7a3d2e7f-5969-439f-af41-902cb0df4a74",
+      "name": "Create others new tasks",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1220,
+        260
+      ],
+      "id": "5d5332f6-b570-4132-ba59-6351f401cc18",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gong.io/v2/calls/extensive",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gongApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"cursor\": \"\",\n  \"filter\": {\n    \"callIds\": [\n      \"2878642735255640690\"\n    ]\n  },\n  \"contentSelector\": {\n    \"context\": \"None\",\n    \"exposedFields\": {\n      \"parties\": true,\n      \"content\": {\n        \"structure\": false,\n        \"topics\": false,\n        \"trackers\": false,\n        \"trackerOccurrences\": false,\n        \"pointsOfInterest\": false,\n        \"brief\": false,\n        \"outline\": false,\n        \"highlights\": false,\n        \"callOutcome\": false,\n        \"keyPoints\": false\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        260
+      ],
+      "id": "75807cd5-f8bd-4d1f-ac0b-265997a98e37",
+      "name": "Get Test Call",
+      "alwaysOutputData": true,
+      "credentials": {
+        "gongApi": {
+          "id": "217eZdugKIyLqdFd",
+          "name": "Gong account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-07-17T22:03:31.995Z",
+      "updatedAt": "2025-07-17T22:03:31.995Z",
+      "role": "workflow:owner",
+      "workflowId": "1w25JjOofwYeXCXo",
+      "projectId": "icapzCMs0tNzxlW6"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-11T20:43:16.000Z",
+  "versionId": "42d4af02-d110-46ba-8ce8-a750339b777e"
+}
