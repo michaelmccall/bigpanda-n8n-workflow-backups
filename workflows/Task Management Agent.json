@@ -244,7 +244,13 @@
     },
     "Add new task comment": {
       "main": [
-        []
+        [
+          {
+            "node": "Task Categories",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Add task comments": {
@@ -348,6 +354,17 @@
         [
           {
             "node": "Get List Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Categories": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -680,7 +697,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1195,11 +1212,106 @@
       ],
       "id": "8bc596b7-bad9-4ef7-8cd2-e92dcb65f13a",
       "name": "Split Out Customer + Call Data"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Split All Tasks').item.json.task_category_index }}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "8b7d1588-f7b7-4189-a569-609a2464c098"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Follow Up with Information"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d70d9db5-1a86-4e6c-a730-0ddf07134ab6",
+                    "leftValue": "={{ $('Split All Tasks').item.json.task_category_index }}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Tool Configuration Update"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2416,
+        1104
+      ],
+      "id": "12d591c8-ab29-4795-9e23-163346bb8f28",
+      "name": "Task Categories"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "gMSXiOW3JFPtxYvF",
+          "mode": "list",
+          "cachedResultName": "Follow Up with Information Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2624,
+        1008
+      ],
+      "id": "1ebacfc0-4199-4f82-afb3-36e640813534",
+      "name": "Execute Workflow"
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Chicago",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "y5MVOLL8LyXy45Z7"
   },
   "shared": [
     {
@@ -1217,6 +1329,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-28T18:42:08.000Z",
-  "versionId": "d8558fb3-76ff-4ba1-968a-9c5b50113c73"
+  "updatedAt": "2026-03-20T21:58:00.000Z",
+  "versionId": "3be5709b-4f35-4fea-b0ec-aefde10313be"
 }
