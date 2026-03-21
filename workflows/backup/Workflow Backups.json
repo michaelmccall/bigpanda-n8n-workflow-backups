@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "/": {
       "main": [
@@ -828,7 +828,10 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "y5MVOLL8LyXy45Z7",
+    "timezone": "America/Chicago"
   },
   "shared": [
     {
@@ -839,7 +842,11 @@
       "projectId": "icapzCMs0tNzxlW6"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [
     {
       "createdAt": "2026-03-20T19:18:26.079Z",
@@ -848,7 +855,7 @@
       "name": "backup"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2026-03-20T19:26:49.000Z",
-  "versionId": "2322df46-1b25-4d58-b777-f488de22f98c"
+  "triggerCount": 1,
+  "updatedAt": "2026-03-20T19:46:53.000Z",
+  "versionId": "4dda7a0c-4e73-46af-a5b5-b7e9f4266f8c"
 }
