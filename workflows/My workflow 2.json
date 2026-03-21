@@ -1,0 +1,55 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2026-03-20T21:45:34.530Z",
+  "id": "pdPebgPiLGvu4Pe0",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "team": "20575659",
+        "events": [
+          "taskCreated"
+        ],
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.clickUpTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3faeb19e-ad45-40be-aa7f-ee02b46cb600",
+      "name": "ClickUp Trigger",
+      "webhookId": "328728dc-5f92-43e5-abd4-3ce8cacfd7e7",
+      "credentials": {
+        "clickUpApi": {
+          "id": "s59KCIKlvpfmEhtW",
+          "name": "ClickUp account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2026-03-20T21:45:34.553Z",
+      "updatedAt": "2026-03-20T21:45:34.553Z",
+      "role": "workflow:owner",
+      "workflowId": "pdPebgPiLGvu4Pe0",
+      "projectId": "icapzCMs0tNzxlW6"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-20T21:46:41.000Z",
+  "versionId": "f46ec6c5-ebd3-49e2-93a1-cb7fec28e70c"
+}
