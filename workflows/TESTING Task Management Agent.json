@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Get user": {
       "main": [
@@ -1056,8 +1058,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-07-17T22:03:31.995Z",
       "updatedAt": "2025-07-17T22:03:31.995Z",
+      "createdAt": "2025-07-17T22:03:31.995Z",
       "role": "workflow:owner",
       "workflowId": "1w25JjOofwYeXCXo",
       "projectId": "icapzCMs0tNzxlW6"
