@@ -1,5 +1,73 @@
 {
-  "active": false,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-23T15:57:41.723Z",
+    "createdAt": "2026-03-23T15:57:41.723Z",
+    "versionId": "1761241e-97ec-471c-8b74-4008e8d56e70",
+    "workflowId": "Kfkvks68aRqQqOIV",
+    "nodes": [
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "77dbde50-abfb-43ff-8152-995d9ea52ffb",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "mode": "list",
+            "value": ""
+          },
+          "messages": {
+            "values": [
+              {}
+            ]
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 1.8,
+        "position": [
+          220,
+          0
+        ],
+        "id": "5c352b53-d5a4-4c35-9aa5-58db0353783f",
+        "name": "Message a model",
+        "credentials": {
+          "openAiApi": {
+            "id": "QI8VhWIOBcvTDoFc",
+            "name": "OpenAi account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Message a model",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "1761241e-97ec-471c-8b74-4008e8d56e70",
   "connections": {
     "When Executed by Another Workflow": {
       "main": [
@@ -70,8 +138,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-07-15T21:27:16.808Z",
       "updatedAt": "2025-07-15T21:27:16.808Z",
+      "createdAt": "2025-07-15T21:27:16.808Z",
       "role": "workflow:owner",
       "workflowId": "Kfkvks68aRqQqOIV",
       "projectId": "icapzCMs0tNzxlW6"
