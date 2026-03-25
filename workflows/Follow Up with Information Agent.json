@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Extract Task Info1": {
       "main": [
@@ -147,8 +149,8 @@
   },
   "shared": [
     {
-      "createdAt": "2026-03-20T21:32:40.517Z",
       "updatedAt": "2026-03-20T21:32:40.517Z",
+      "createdAt": "2026-03-20T21:32:40.517Z",
       "role": "workflow:owner",
       "workflowId": "EeNvtpvAlUYVTrxX",
       "projectId": "icapzCMs0tNzxlW6"
