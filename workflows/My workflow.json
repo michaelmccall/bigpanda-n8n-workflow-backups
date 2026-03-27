@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "ClickUp Trigger1": {
       "main": [
@@ -218,8 +220,8 @@
   },
   "shared": [
     {
-      "createdAt": "2026-03-20T21:06:48.431Z",
       "updatedAt": "2026-03-20T21:06:48.431Z",
+      "createdAt": "2026-03-20T21:06:48.431Z",
       "role": "workflow:owner",
       "workflowId": "T5o5440ihda0YFSB",
       "projectId": "icapzCMs0tNzxlW6"
