@@ -1,5 +1,72 @@
 {
-  "active": false,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-23T15:57:41.723Z",
+    "createdAt": "2026-03-23T15:57:41.723Z",
+    "versionId": "6b445073-0dec-4484-9c4e-4cf84bc9f349",
+    "workflowId": "y5MVOLL8LyXy45Z7",
+    "nodes": [
+      {
+        "parameters": {},
+        "name": "Error Trigger",
+        "type": "n8n-nodes-base.errorTrigger",
+        "position": [
+          0,
+          0
+        ],
+        "typeVersion": 1,
+        "id": "df856919-3d40-4f8e-9f3e-b328bec9686d"
+      },
+      {
+        "parameters": {
+          "resource": "message",
+          "subject": "=n8n Workflow Failure:  {{$json[\"workflow\"][\"name\"]}}",
+          "message": "=Workflow: {{$json[\"workflow\"][\"name\"]}}\nError: {{$json[\"execution\"][\"error\"][\"message\"]}}\nLast node executed: {{$json[\"execution\"][\"lastNodeExecuted\"]}}\nExecution URL: {{$json[\"execution\"][\"url\"]}}\nStacktrace:\n{{$json[\"execution\"][\"error\"][\"stack\"]}}",
+          "toList": [
+            "mmccall@bigpanda.io"
+          ],
+          "additionalFields": {}
+        },
+        "name": "Gmail",
+        "type": "n8n-nodes-base.gmail",
+        "position": [
+          208,
+          0
+        ],
+        "typeVersion": 1,
+        "id": "1a82f39a-1f8b-4d75-91f3-e3aed89584e2",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "PFcc4RTIzp1hUCBZ",
+            "name": "Gmail account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Gmail",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Gmail": {
+        "main": [
+          []
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "6b445073-0dec-4484-9c4e-4cf84bc9f349",
   "connections": {
     "Error Trigger": {
       "main": [
@@ -69,8 +136,8 @@
   },
   "shared": [
     {
-      "createdAt": "2026-03-20T19:29:10.510Z",
       "updatedAt": "2026-03-20T19:29:10.510Z",
+      "createdAt": "2026-03-20T19:29:10.510Z",
       "role": "workflow:owner",
       "workflowId": "y5MVOLL8LyXy45Z7",
       "projectId": "icapzCMs0tNzxlW6"
