@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-23T13:59:55.704Z",
-    "createdAt": "2026-03-23T13:59:55.704Z",
-    "versionId": "449bc55b-3474-42de-8a0c-6812a2eccb2e",
+    "updatedAt": "2026-04-20T19:04:32.000Z",
+    "createdAt": "2026-04-20T19:04:23.954Z",
+    "versionId": "695c526a-cecb-4fa4-aeb2-18902913fb09",
     "workflowId": "EZxTSJLatS4LxK07",
     "nodes": [
       {
@@ -323,7 +323,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\") || call.metaData.title.includes(\"Biggy Deployers\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -1305,11 +1305,11 @@
       }
     },
     "authors": "Michael McCall",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "name": "Version 695c526a",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "449bc55b-3474-42de-8a0c-6812a2eccb2e",
+  "activeVersionId": "695c526a-cecb-4fa4-aeb2-18902913fb09",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -2007,7 +2007,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\") || call.metaData.title.includes(\"Biggy Deployers\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2621,7 +2621,8 @@
     "executionOrder": "v1",
     "timezone": "America/Chicago",
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "y5MVOLL8LyXy45Z7"
+    "errorWorkflow": "y5MVOLL8LyXy45Z7",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -2639,6 +2640,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-23T13:59:55.000Z",
-  "versionId": "449bc55b-3474-42de-8a0c-6812a2eccb2e"
+  "updatedAt": "2026-04-20T19:04:23.954Z",
+  "versionId": "695c526a-cecb-4fa4-aeb2-18902913fb09"
 }
