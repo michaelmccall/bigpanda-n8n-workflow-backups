@@ -1,35 +1,60 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-23T15:57:41.723Z",
+    "createdAt": "2026-03-23T15:57:41.723Z",
+    "versionId": "15ea2371-7717-4cdd-9e96-62cf054b13ca",
+    "workflowId": "gMSXiOW3JFPtxYvF",
+    "nodes": [
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "id": "c055762a-8fe7-4141-a639-df2372f30060",
+        "typeVersion": 1.1,
+        "name": "When Executed by Another Workflow",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "position": [
+          272,
+          352
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "b5942df6-0160-4ef7-965d-57583acdc8aa",
+        "name": "Replace me with your logic",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          528,
+          352
+        ]
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Replace me with your logic",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "15ea2371-7717-4cdd-9e96-62cf054b13ca",
   "connections": {
-    "Extract Task Info1": {
+    "When Executed by Another Workflow": {
       "main": [
         [
           {
-            "node": "Search Glean + Draft Email1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Search Glean + Draft Email1": {
-      "main": [
-        [
-          {
-            "node": "Parse Glean Response1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Parse Glean Response1": {
-      "main": [
-        [
-          {
-            "node": "Send Draft Email to mmccall",
+            "node": "Replace me with your logic",
             "type": "main",
             "index": 0
           }
@@ -37,109 +62,33 @@
       ]
     }
   },
-  "createdAt": "2026-03-20T21:32:40.512Z",
-  "id": "EeNvtpvAlUYVTrxX",
-  "isArchived": true,
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2026-03-20T21:57:09.584Z",
+  "id": "gMSXiOW3JFPtxYvF",
+  "isArchived": false,
+  "meta": null,
   "name": "Follow Up with Information Agent",
   "nodes": [
     {
       "parameters": {
-        "team": "20575659",
-        "events": [
-          "taskCreated"
-        ],
-        "filters": {
-          "spaceId": ""
-        }
+        "inputSource": "passthrough"
       },
-      "type": "n8n-nodes-base.clickUpTrigger",
-      "typeVersion": 1,
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
       "position": [
-        304,
-        240
-      ],
-      "id": "3b3e732a-1796-4b2c-96eb-d04d98e2ae36",
-      "name": "ClickUp Trigger",
-      "webhookId": "95587cdf-ffa4-4ee9-b6fc-f0b4142c8aa9",
-      "credentials": {
-        "clickUpApi": {
-          "id": "s59KCIKlvpfmEhtW",
-          "name": "ClickUp account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "sendTo": "mmccall@bigpanda.io",
-        "subject": "=[Follow Up Draft] {{ $json.taskName }}",
-        "message": "=A ClickUp task has been categorized as 'Follow Up with Information' and Glean has drafted a suggested customer response.\n\n============================================================\nTASK NAME:  {{ $json.taskName }}\n============================================================\n\nTASK DESCRIPTION:\n{{ $json.taskDesc }}\n\n============================================================\nDRAFTED CUSTOMER EMAIL (review before sending):\n============================================================\n\n{{ $json.draftText }}\n\n------------------------------------------------------------\nThis draft has also been added as a comment on the ClickUp task.\nTask ID: {{ $json.taskId }}\n------------------------------------------------------------",
-        "options": {}
-      },
-      "id": "5b752ecd-a09a-4fed-b34a-1580c8ad7090",
-      "name": "Send Draft Email to mmccall",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2,
-      "position": [
-        1344,
+        272,
         352
-      ],
-      "webhookId": "1b914997-75a8-4814-8477-c471c7998c6d",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "PFcc4RTIzp1hUCBZ",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "functionCode": "// Extract the key fields from the ClickUp task payload\nconst task = items[0].json.task || items[0].json;\n\nconst taskId   = task.id;\nconst taskName = task.name;\nconst taskDesc = task.description || task.text_content || '';\n\n// Pull any extra context from custom fields\nconst customFields = (task.custom_fields || []);\nconst extraContext = customFields\n  .filter(f => f.value)\n  .map(f => `${f.name}: ${f.value}`)\n  .join('\\n');\n\nreturn [{ json: { taskId, taskName, taskDesc, extraContext } }];"
-      },
-      "id": "f59c6b36-6e37-4833-9305-5fdf0426956a",
-      "name": "Extract Task Info1",
-      "type": "n8n-nodes-base.function",
-      "typeVersion": 1,
-      "position": [
-        592,
-        240
       ]
     },
     {
-      "parameters": {
-        "authentication": "headerAuth",
-        "url": "https://bigpanda-be.glean.com/rest/api/v1/chat",
-        "jsonParameters": true,
-        "options": {}
-      },
-      "id": "c00cf6b3-00a8-4134-8599-dc6a492a26d6",
-      "name": "Search Glean + Draft Email1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 1,
+      "parameters": {},
+      "id": "b5942df6-0160-4ef7-965d-57583acdc8aa",
+      "name": "Replace me with your logic",
+      "type": "n8n-nodes-base.noOp",
       "position": [
-        848,
-        240
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "JnAhan6isLoVjoYp",
-          "name": "Glean API"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "functionCode": "// Parse the Glean chat response\nconst gleanResponse = items[0].json;\n\n// Glean returns messages array; grab the last AGENT message\nconst messages = gleanResponse.messages || [];\nconst agentMsg  = [...messages].reverse().find(m => m.author === 'GLEAN_AGENT' || m.role === 'assistant') || messages[messages.length - 1];\n\n// Extract plain text from fragments\nlet draftText = '';\nif (agentMsg?.fragments) {\n  draftText = agentMsg.fragments.map(f => f.text || '').join('');\n} else if (agentMsg?.content) {\n  draftText = agentMsg.content;\n} else {\n  draftText = JSON.stringify(agentMsg);\n}\n\n// Carry forward task context from earlier in the chain\nconst taskId   = $node[\"Extract Task Info\"].json.taskId;\nconst taskName = $node[\"Extract Task Info\"].json.taskName;\nconst taskDesc = $node[\"Extract Task Info\"].json.taskDesc;\n\nreturn [{ json: { taskId, taskName, taskDesc, draftText } }];"
-      },
-      "id": "2d864ce7-4e7e-49eb-8346-620d610b0a27",
-      "name": "Parse Glean Response1",
-      "type": "n8n-nodes-base.function",
-      "typeVersion": 1,
-      "position": [
-        1104,
-        240
+        528,
+        352
       ]
     }
   ],
@@ -149,16 +98,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-03-20T21:32:40.517Z",
-      "createdAt": "2026-03-20T21:32:40.517Z",
+      "updatedAt": "2026-03-20T21:57:09.592Z",
+      "createdAt": "2026-03-20T21:57:09.592Z",
       "role": "workflow:owner",
-      "workflowId": "EeNvtpvAlUYVTrxX",
+      "workflowId": "gMSXiOW3JFPtxYvF",
       "projectId": "icapzCMs0tNzxlW6"
     }
   ],
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-03-20T21:45:11.000Z",
-  "versionId": "c46dddf6-e0ff-42f5-934b-33c44a26dda5"
+  "updatedAt": "2026-03-23T15:58:41.714Z",
+  "versionId": "15ea2371-7717-4cdd-9e96-62cf054b13ca"
 }
