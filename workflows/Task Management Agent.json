@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-06-30T21:56:58.000Z",
-    "createdAt": "2026-06-30T21:56:50.500Z",
-    "versionId": "1afc7092-975e-44c5-b01d-291eaa5a4fd5",
+    "updatedAt": "2026-07-08T18:14:49.000Z",
+    "createdAt": "2026-07-08T18:14:39.901Z",
+    "versionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a",
     "workflowId": "EZxTSJLatS4LxK07",
     "nodes": [
       {
@@ -323,7 +323,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\") || call.metaData.title.includes(\"Biggy Deployers\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = parties.some(\n    party => party.emailAddress?.toLowerCase() === myEmail.toLowerCase()\n  );\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    parties.length > 0 &&\n    parties.every(\n      party => party.emailAddress?.toLowerCase().endsWith(internalDomain)\n    );\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -1330,11 +1330,11 @@
     },
     "nodeGroups": [],
     "authors": "Michael McCall",
-    "name": "Version 1afc7092",
+    "name": "Version 12f2abff",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "1afc7092-975e-44c5-b01d-291eaa5a4fd5",
+  "activeVersionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -2043,7 +2043,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  let call = allCalls.calls[i];\n  let hasMyEmail = (call.parties || []).some(party => party.emailAddress === myEmail);\n  let hasRSA = call.metaData.title.includes(\"Labcorp Working Session\");\n  let isEnablement = call.metaData.title.includes(\"Enablement\") || call.metaData.title.includes(\"BigPanda Best Practices\") || call.metaData.title.includes(\"Biggy Deployers\");\n  \n  if (!hasMyEmail || hasRSA || isEnablement) {\n    allCalls.calls.splice(i, 1); // Removes the element at index i\n  }\n}\n\nreturn allCalls;"
+        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = parties.some(\n    party => party.emailAddress?.toLowerCase() === myEmail.toLowerCase()\n  );\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    parties.length > 0 &&\n    parties.every(\n      party => party.emailAddress?.toLowerCase().endsWith(internalDomain)\n    );\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2712,6 +2712,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-06-30T21:56:50.498Z",
-  "versionId": "1afc7092-975e-44c5-b01d-291eaa5a4fd5"
+  "updatedAt": "2026-07-08T18:14:39.900Z",
+  "versionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a"
 }
