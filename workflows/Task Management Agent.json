@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-07-08T18:14:49.000Z",
-    "createdAt": "2026-07-08T18:14:39.901Z",
-    "versionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a",
+    "updatedAt": "2026-07-10T14:10:42.000Z",
+    "createdAt": "2026-07-10T14:10:01.753Z",
+    "versionId": "81e3771a-ee00-43de-b46c-487c30da12b3",
     "workflowId": "EZxTSJLatS4LxK07",
     "nodes": [
       {
@@ -11,8 +11,8 @@
           "rule": {
             "interval": [
               {
-                "field": "minutes",
-                "minutesInterval": 90
+                "field": "cronExpression",
+                "expression": "0 9-17 * * 1-5"
               }
             ]
           }
@@ -323,7 +323,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = parties.some(\n    party => party.emailAddress?.toLowerCase() === myEmail.toLowerCase()\n  );\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    parties.length > 0 &&\n    parties.every(\n      party => party.emailAddress?.toLowerCase().endsWith(internalDomain)\n    );\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
+          "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Normalize participant emails and remove parties that do not have an email address.\n  const partyEmails = parties\n    .map(party => party.emailAddress?.toLowerCase())\n    .filter(Boolean);\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = partyEmails.includes(myEmail.toLowerCase());\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    partyEmails.length > 0 &&\n    partyEmails.every(email => email.endsWith(internalDomain));\n\n  if( hasMyEmail) {\n  console.log(title + ' ' + isInternalOnlyCall);\n  }\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -359,7 +359,7 @@
           "messages": {
             "values": [
               {
-                "content": "=Please scan the entire json payload below under \"PAYLOAD\", not just the preview or snippet, for the parties array of each call object and return the \"CALL DETAILS\". Review the TASK LISTS data to get the corresponding task_list_id based on the customer_name and the list name.\n\nPlease format it in JSON like the \"OUTPUT JSON\" section and respond with NOTHING except the JSON.\n\nCALL DETAILS\n1. call ID\n2. title \n3. customer_name (infer this from non-bigpanda.io emails and call titles. Note: Upbound and Rent-A-Center are the same customer.)\n4. task_list_id\n5. speaker_map (an array mapping all speakerIds to their names from the \"parties\" array)\n\nTASK LISTS\n{{ $json.lists.toJsonString() }}\n\nOUTPUT JSON\n{\n  \"calls\": [\n    {\n       \"id\": \"xxxx\",\n       \"title\": \"...\",\n       \"customer_name\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"speaker_map\": [\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         },\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         }\n       ]\n    },\n    {\n      ...\n     }\n  ]\n}\n\nPAYLOAD\n{{ $('Format call data').item.json.calls.toJsonString() }}"
+                "content": "=Please scan the entire json payload below under \"PAYLOAD\", not just the preview or snippet, for the parties array of each call object and return the \"CALL DETAILS\". Review the TASK LISTS data to get the corresponding task_list_id based on the customer_name and the list name.\n\nPlease format it in JSON like the \"OUTPUT JSON\" section and respond with NOTHING except the JSON.\n\nNOTE: If task has task_list_id = null, drop it from the calls array\n\nCALL DETAILS\n1. call ID\n2. title \n3. customer_name (infer this from non-bigpanda.io emails and call titles. Note: Upbound and Rent-A-Center are the same customer.)\n4. task_list_id\n5. speaker_map (an array mapping all speakerIds to their names from the \"parties\" array)\n\nTASK LISTS\n{{ $json.lists.toJsonString() }}\n\nOUTPUT JSON\n{\n  \"calls\": [\n    {\n       \"id\": \"xxxx\",\n       \"title\": \"...\",\n       \"customer_name\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"speaker_map\": [\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         },\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         }\n       ]\n    },\n    {\n      ...\n     }\n  ]\n}\n\nPAYLOAD\n{{ $('Format call data').item.json.calls.toJsonString() }}"
               }
             ]
           },
@@ -1330,11 +1330,11 @@
     },
     "nodeGroups": [],
     "authors": "Michael McCall",
-    "name": "Version 12f2abff",
+    "name": "Version 81e3771a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a",
+  "activeVersionId": "81e3771a-ee00-43de-b46c-487c30da12b3",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -1731,8 +1731,8 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes",
-              "minutesInterval": 90
+              "field": "cronExpression",
+              "expression": "0 9-17 * * 1-5"
             }
           ]
         }
@@ -2043,7 +2043,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = parties.some(\n    party => party.emailAddress?.toLowerCase() === myEmail.toLowerCase()\n  );\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    parties.length > 0 &&\n    parties.every(\n      party => party.emailAddress?.toLowerCase().endsWith(internalDomain)\n    );\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
+        "jsCode": "const myEmail = \"mmccall@bigpanda.io\";\nconst internalDomain = \"@bigpanda.io\";\n\nconst calls = $input.all();\nconst allCalls = calls[0].json;\n\n// Merge any additional returned call batches into one call list.\nfor (let c = 1; c < calls.length; c++) {\n  allCalls.calls = [...allCalls.calls, ...calls[c].json.calls];\n}\n\n// Loop backward so removing calls with splice does not skip any items.\nfor (let i = allCalls.calls.length - 1; i >= 0; i--) {\n  const call = allCalls.calls[i];\n\n  // Default to an empty participant list if the call has no parties field.\n  const parties = call.parties || [];\n\n  // Normalize participant emails and remove parties that do not have an email address.\n  const partyEmails = parties\n    .map(party => party.emailAddress?.toLowerCase())\n    .filter(Boolean);\n\n  // Default to an empty title if metadata or title is missing.\n  const title = call.metaData?.title || \"\";\n\n  // Identify which calls have my email as one of the participants.\n  const hasMyEmail = partyEmails.includes(myEmail.toLowerCase());\n\n  // Identify internal-only calls where every participant has a BigPanda email.\n  // These are filtered out because there are no external/customer attendees.\n  const isInternalOnlyCall =\n    partyEmails.length > 0 &&\n    partyEmails.every(email => email.endsWith(internalDomain));\n\n  if( hasMyEmail) {\n  console.log(title + ' ' + isInternalOnlyCall);\n  }\n\n  // Filter out calls where the RSA is handling task management.\n  const hasRSA = title.includes(\"Labcorp Working Session\");\n\n  // Remove the call if:\n  // - I was not a participant\n  // - It was internal-only\n  // - It matched the RSA / working session exclusion\n  if (!hasMyEmail || isInternalOnlyCall || hasRSA) {\n    allCalls.calls.splice(i, 1);\n  }\n}\n\nreturn allCalls;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2079,7 +2079,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Please scan the entire json payload below under \"PAYLOAD\", not just the preview or snippet, for the parties array of each call object and return the \"CALL DETAILS\". Review the TASK LISTS data to get the corresponding task_list_id based on the customer_name and the list name.\n\nPlease format it in JSON like the \"OUTPUT JSON\" section and respond with NOTHING except the JSON.\n\nCALL DETAILS\n1. call ID\n2. title \n3. customer_name (infer this from non-bigpanda.io emails and call titles. Note: Upbound and Rent-A-Center are the same customer.)\n4. task_list_id\n5. speaker_map (an array mapping all speakerIds to their names from the \"parties\" array)\n\nTASK LISTS\n{{ $json.lists.toJsonString() }}\n\nOUTPUT JSON\n{\n  \"calls\": [\n    {\n       \"id\": \"xxxx\",\n       \"title\": \"...\",\n       \"customer_name\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"speaker_map\": [\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         },\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         }\n       ]\n    },\n    {\n      ...\n     }\n  ]\n}\n\nPAYLOAD\n{{ $('Format call data').item.json.calls.toJsonString() }}"
+              "content": "=Please scan the entire json payload below under \"PAYLOAD\", not just the preview or snippet, for the parties array of each call object and return the \"CALL DETAILS\". Review the TASK LISTS data to get the corresponding task_list_id based on the customer_name and the list name.\n\nPlease format it in JSON like the \"OUTPUT JSON\" section and respond with NOTHING except the JSON.\n\nNOTE: If task has task_list_id = null, drop it from the calls array\n\nCALL DETAILS\n1. call ID\n2. title \n3. customer_name (infer this from non-bigpanda.io emails and call titles. Note: Upbound and Rent-A-Center are the same customer.)\n4. task_list_id\n5. speaker_map (an array mapping all speakerIds to their names from the \"parties\" array)\n\nTASK LISTS\n{{ $json.lists.toJsonString() }}\n\nOUTPUT JSON\n{\n  \"calls\": [\n    {\n       \"id\": \"xxxx\",\n       \"title\": \"...\",\n       \"customer_name\": \"...\",\n       \"task_list_id\": \"xxxx\",\n       \"speaker_map\": [\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         },\n         {\n            \"speakerId\": \"...\",\n            \"name\": \"...\"\n         }\n       ]\n    },\n    {\n      ...\n     }\n  ]\n}\n\nPAYLOAD\n{{ $('Format call data').item.json.calls.toJsonString() }}"
             }
           ]
         },
@@ -2665,28 +2665,7 @@
       "name": "Build Description"
     }
   ],
-  "pinData": {
-    "Schedule Trigger": [
-      {
-        "json": {
-          "timestamp": "2026-06-29T14:00:56.134-05:00",
-          "Readable date": "June 29th 2026, 2:00:56 pm",
-          "Readable time": "2:00:56 pm",
-          "Day of week": "Monday",
-          "Year": "2026",
-          "Month": "June",
-          "Day of month": "29",
-          "Hour": "14",
-          "Minute": "00",
-          "Second": "56",
-          "Timezone": "America/Chicago (UTC-05:00)"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "timezone": "America/Chicago",
@@ -2712,6 +2691,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-07-08T18:14:39.900Z",
-  "versionId": "12f2abff-bc06-4afc-856a-5edbe3b7654a"
+  "updatedAt": "2026-07-10T14:10:12.145Z",
+  "versionId": "81e3771a-ee00-43de-b46c-487c30da12b3"
 }
